@@ -1,7 +1,7 @@
 package euclid;
 
 public class Euclid {
-    public int GCD (int a, int b) { return b==0 ? a : GCD(b, a%b); }
+    public int GCD (int a, int b) { return b==0 ? a : GCD(b, a % b); }
 
     public int[] extended(int a, int b) {
         int qi = a / b;

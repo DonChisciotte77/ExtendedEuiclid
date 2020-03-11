@@ -37,9 +37,18 @@ public class Main {
 
     private void calculateBezoutCoefficients() {
         System.out.println("Calculating Bézout coefficients...");
+
+        if (this.b > this.a)
+            this.b = K(this.a, this.a = this.b);
+        System.out.print(this.a + " " + this.b);
+
         this.coefficients = new Euclid().extended(this.a, this.b);
         System.out.println("Bézout coefficients: " + Arrays.toString(coefficients));
         System.out.println();
+    }
+
+    private int K(int a, int b) {
+        return a;
     }
 
     private void calculateGCD() {

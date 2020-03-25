@@ -31,8 +31,6 @@ public class Main {
 
         if ((a*coefficients[0] + b*coefficients[1]) == this.GCD)
             System.out.println("Calculates are correct.");
-        else
-            System.out.println("This program does not work.");
     }
 
     private void calculateBezoutCoefficients() {
@@ -46,9 +44,9 @@ public class Main {
         if (this.coefficients != null) {
             System.out.println("Bézout coefficients: " + Arrays.toString(coefficients));
             System.out.println();
+        } else {
+            System.out.println("GCD != 1");
         }
-
-        System.out.println("GCD != 1");
     }
 
     private int K(int a, int b) {

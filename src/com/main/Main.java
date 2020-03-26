@@ -36,8 +36,8 @@ public class Main {
     private void calculateBezoutCoefficients() {
         System.out.println("Calculating Bézout coefficients...");
 
-        if (this.b > this.a)
-            this.b = K(this.a, this.a = this.b);
+        /*if (this.b > this.a)
+            this.b = K(this.a, this.a = this.b);*/
 
         this.coefficients = new Euclid().extended(this.a, this.b, this.GCD);
 

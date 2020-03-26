@@ -26,7 +26,13 @@ public class Euclid {
                 ri = a - qi * ri;
             }
 
-            return new int[]{ s, t };
+            while (s < 0)
+                s = b + s;
+
+            while (t < 0)
+                t = a + t;
+
+            return new int[]{s, t};
         }
 
         return null;

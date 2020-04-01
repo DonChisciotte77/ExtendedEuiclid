@@ -1,15 +1,17 @@
 package com.main;
 
+import org.jetbrains.annotations.NotNull;
 import utils.Read;
 import euclid.Euclid;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 
 public class Main {
-    private int a;
-    private int b;
-    private int GCD;
-    private int[] coefficients;
+    private BigInteger a;
+    private BigInteger b;
+    private BigInteger GCD;
+    private BigInteger[] coefficients;
     private Read read;
 
     public static void main(String[] args) {
@@ -29,15 +31,15 @@ public class Main {
                 "GDC: " + this.GCD + "\n" +
                 "Bézout coefficients: " + Arrays.toString(this.coefficients));
 
-        if ((a*coefficients[0] + b*coefficients[1]) == this.GCD)
+        if ((a.multiply(coefficients[0]).add(b.multiply(coefficients[1]))).compareTo(this.GCD) == 0)
             System.out.println("Calculates are correct.");
     }
 
     private void calculateBezoutCoefficients() {
         System.out.println("Calculating Bézout coefficients...");
 
-        /*if (this.b > this.a)
-            this.b = K(this.a, this.a = this.b);*/
+        if (b.compareTo(a) > 0)
+            this.b = K(this.a, this.a = this.b);
 
         this.coefficients = new Euclid().extended(this.a, this.b, this.GCD);
 
@@ -49,7 +51,7 @@ public class Main {
         }
     }
 
-    private int K(int a, int b) {
+    private BigInteger K(BigInteger a, BigInteger b) {
         return a;
     }
 
@@ -68,9 +70,9 @@ public class Main {
         System.out.println();
     }
 
-    private int getNumber(char nameOfNumber) {
+    @NotNull
+    private BigInteger getNumber(char nameOfNumber) {
         System.out.print("Number " + nameOfNumber + ": ");
-
-        return read.readInt();
+        return BigInteger.valueOf(Long.parseLong(read.readString()));
     }
 }

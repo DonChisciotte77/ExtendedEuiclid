@@ -1,38 +1,44 @@
 package euclid;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.math.BigInteger;
+
 public class Euclid {
-    public int GCD (int a, int b) { return b==0 ? a : GCD(b, a % b); }
+    public BigInteger GCD (BigInteger a, @NotNull BigInteger b) {
+        return b.compareTo(BigInteger.valueOf(0)) == 0 ? a : GCD(b, a.mod(b));
+    }
 
-    public int[] extended(int a, int b, int GCD) {
-        if (GCD == 1) {
-            int qi = a / b;
+    public BigInteger[] extended(BigInteger a, BigInteger b, @NotNull BigInteger GCD) {
+        if (GCD.compareTo(BigInteger.valueOf(1)) == 0) {
+            BigInteger qi = a.divide(b);
 
-            int s0 = 1, s1 = 0, s = 0;
-            int t0 = 0, t1 = 1, t = 0;
+            BigInteger s0 = BigInteger.valueOf(1), s1 = BigInteger.valueOf(0), s = BigInteger.valueOf(0);
+            BigInteger t0 = BigInteger.valueOf(0), t1 = BigInteger.valueOf(1), t = BigInteger.valueOf(0);
 
-            int ri = a - qi * b;
-            while (ri != 0) {
-                s = s0 - qi * s1;
+            BigInteger ri = a.subtract(qi.multiply(b));
+            while (ri.compareTo(BigInteger.valueOf(0)) != 0) {
+                s = s0.subtract(qi.multiply(s1));
                 s0 = s1;
                 s1 = s;
 
-                t = t0 - qi * t1;
+                t = t0.subtract(qi.multiply(t1));
                 t0 = t1;
                 t1 = t;
 
                 a = b;
                 b = ri;
-                qi = a / ri;
-                ri = a - qi * ri;
+                qi = a.divide(ri);
+                ri = a.subtract(qi.multiply(ri));
             }
 
-            while (s < 0)
+            /*while (s < 0)
                 s = b + s;
 
             while (t < 0)
-                t = a + t;
+                t = a + t;*/
 
-            return new int[]{s, t};
+            return new BigInteger[]{s, t};
         }
 
         return null;
